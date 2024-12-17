@@ -17,13 +17,13 @@ final class LocalizationManager extends EasyLocalization {
 
   static final List<Locale> _supportedLocales = [
     Language.en.locale,
-    Language.tr.locale,
+    Language.fr.locale,
   ];
 }
 
 enum Language {
   en(Locale('en'), "English"),
-  tr(Locale('tr'), "Türkçe"),
+  fr(Locale('fr'), "French"),
   ;
 
   const Language(this.locale, this.label);

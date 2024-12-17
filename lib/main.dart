@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:molo/core/services/shared_preferences_service.dart';
@@ -13,14 +14,17 @@ import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/common/helpers/ui_helper.dart';
 import 'package:molo/core/services/theme_service.dart';
 
+import 'injection_container.dart';
+
 void main() async {
+  await configureDependencies();
+
   await dotenv.load();
   await SharedPreferencesService.instance.init();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   ThemeService.getTheme();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   runApp(
     CustomMultiBlocProvider(
       child: LocalizationManager(
@@ -54,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     UIHelper.initialize(context);
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, themeState) {
-      return CupertinoApp.router(
+      return MaterialApp.router(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:molo/core/interfaces/user_interface.dart';
 import 'package:molo/core/models/http_response_model.dart';
@@ -6,30 +8,49 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:molo/core/services/shared_preferences_service.dart';
 import 'package:molo/features/profile/model/user_model.dart';
 
+import '../../../core/http/http_helper.dart';
+import '../../../core/http/network_info.dart';
+
 class UserService extends UserInterface {
   final String _baseUrl = dotenv.env['BASE_URL'] ?? "";
+  final HttpHelper httpHelper;
 
+  UserService(this.httpHelper, this.networkInfo);
+  final NetworkInfo networkInfo;
   @override
   Future<HttpResponseModel> login(
       {required String email, required String password}) async {
-    try {
-      var url = Uri.parse('$_baseUrl/login');
-      var response = await http.post(
-        url,
-        body: jsonEncode({
-          'email': email,
-          'password': password,
-        }),
-      );
-
+    if (await networkInfo.isConnected) {
+      try {
+        var url = '$_baseUrl/signin';
+        var response = await httpHelper.post(
+          url,
+          data: jsonEncode({
+            'email': email,
+            'password': password,
+          }),
+        );
+        if (response.statusCode == 200) {
+          return HttpResponseModel(
+            statusCode: response.statusCode,
+            data: response.data["access_token"],
+            message: response.data["message"],
+          );
+        } else {
+          return HttpResponseModel(
+            statusCode: response.statusCode,
+            message: response.data["message"],
+          );
+        }
+      } catch (e) {
+        return HttpResponseModel(
+          statusCode: ErrorHandler.handle(e).failure.code,
+          message: ErrorHandler.handle(e).failure.message,
+        );
+      }
+    } else {
       return HttpResponseModel(
-        statusCode: response.statusCode,
-        data: jsonDecode(response.body)["token"],
-        message: jsonDecode(response.body)["message"],
-      );
-    } catch (e) {
-      return HttpResponseModel(
-        message: 'An error occurred: $e',
+        message: DataSource.noInternetConnection.getFailure().message,
       );
     }
   }
@@ -211,6 +232,44 @@ class UserService extends UserInterface {
       return HttpResponseModel(
         message: 'An error occurred: $e',
       );
+    }
+  }
+
+  @override
+  Future<Either<HttpResponseModel, UserModel>> getUserInfoByToken(
+      {required String token}) async {
+    if (await networkInfo.isConnected) {
+      var url = '$_baseUrl/user-info';
+      var response = await httpHelper.get(
+        url,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      try {
+        if (response.statusCode == 200) {
+          return right(UserModel.fromJson(response.data));
+        } else {
+          return left(HttpResponseModel(
+            statusCode: response.statusCode,
+            message: response.data["message"],
+          ));
+        }
+      } catch (e) {
+        return left(HttpResponseModel(
+          statusCode: response.statusCode,
+          data: response.data,
+          message: response.data["message"],
+        ));
+      }
+    } else {
+      return left(HttpResponseModel(
+        message: DataSource.noInternetConnection.getFailure().message,
+      ));
     }
   }
 }

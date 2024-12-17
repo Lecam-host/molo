@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:molo/core/utils/router/routes.dart';
@@ -11,12 +12,13 @@ import 'package:molo/features/auth/register/bloc/register_state.dart';
 import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/common/components/custom_text_field.dart';
-import 'package:molo/common/components/custom_trailing.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/common/helpers/app_helper.dart';
 import 'package:molo/core/models/http_response_model.dart';
 import 'package:molo/features/auth/password/widget/update_password_button.dart';
-import 'package:molo/common/widgets/custom_scaffold.dart';
+
+import '../../../../core/constants/color_constants.dart';
+import '../../components/auth_header.dart';
 part "update_password_view_mixin.dart";
 
 class UpdatePasswordView extends StatefulWidget {
@@ -41,50 +43,68 @@ class _UpdatePasswordViewState extends State<UpdatePasswordView>
                   listener: (context, state) {
                     _listener(state);
                   },
-                  child: PopScope(
-                    canPop: !loginState.isLoading,
-                    child: CustomScaffold(
-                      title: LocaleKeys.new_password,
-                      trailing: CustomTrailing(
-                        text: LocaleKeys.cancel,
-                        isLoading: loginState.isLoading,
-                        onPressed: () {
-                          context.go(Routes.login.path);
-                        },
+                  child: SafeArea(
+                    child: Scaffold(
+                      body: PopScope(
+                        canPop: !loginState.isLoading,
+                        child: Column(
+                          children: [
+                            AuthHeaderWidget(
+                              title: LocaleKeys.change_password.tr(),
+                              subtitle: LocaleKeys.enter_new_password.tr(),
+                              showBackButton: true,
+                            ),
+                            const SizedBox(height: 20),
+                            CustomTextField(
+                              textEditingController:
+                                  _newPasswordTextEditingController,
+                              prefixIcon: CupertinoIcons.lock,
+                              placeholder: LocaleKeys.password.tr(),
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
+                              enabled: !loginState.isLoading,
+                              onSubmitted: (loginState.isLoading ||
+                                      registerState.message == null)
+                                  ? null
+                                  : (p0) {
+                                      _updateButtonOnPressed(
+                                          loginBloc: loginBloc,
+                                          registerState: registerState);
+                                    },
+                            ),
+                            const SizedBox(height: 20),
+                            CustomTextField(
+                              textEditingController:
+                                  _newPasswordTextEditingController,
+                              prefixIcon: CupertinoIcons.lock,
+                              placeholder: LocaleKeys.confirm_password.tr(),
+                              obscureText: true,
+                              textInputAction: TextInputAction.done,
+                              enabled: !loginState.isLoading,
+                              onSubmitted: (loginState.isLoading ||
+                                      registerState.message == null)
+                                  ? null
+                                  : (p0) {
+                                      _updateButtonOnPressed(
+                                          loginBloc: loginBloc,
+                                          registerState: registerState);
+                                    },
+                            ),
+                            const SizedBox(height: 20),
+                            UpdatePasswordButton(
+                              isLoading: loginState.isLoading,
+                              onPressed: (loginState.isLoading ||
+                                      registerState.message == null)
+                                  ? null
+                                  : () {
+                                      _updateButtonOnPressed(
+                                          loginBloc: loginBloc,
+                                          registerState: registerState);
+                                    },
+                            ),
+                          ],
+                        ),
                       ),
-                      children: [
-                        const Text(LocaleKeys.enter_valid_password).tr(),
-                        const SizedBox(height: 10),
-                        CustomTextField(
-                          textEditingController:
-                              _newPasswordTextEditingController,
-                          prefixIcon: CupertinoIcons.lock,
-                          placeholder: LocaleKeys.password.tr(),
-                          obscureText: true,
-                          textInputAction: TextInputAction.done,
-                          enabled: !loginState.isLoading,
-                          onSubmitted: (loginState.isLoading ||
-                                  registerState.message == null)
-                              ? null
-                              : (p0) {
-                                  _updateButtonOnPressed(
-                                      loginBloc: loginBloc,
-                                      registerState: registerState);
-                                },
-                        ),
-                        const SizedBox(height: 10),
-                        UpdatePasswordButton(
-                          isLoading: loginState.isLoading,
-                          onPressed: (loginState.isLoading ||
-                                  registerState.message == null)
-                              ? null
-                              : () {
-                                  _updateButtonOnPressed(
-                                      loginBloc: loginBloc,
-                                      registerState: registerState);
-                                },
-                        ),
-                      ],
                     ),
                   ),
                 );

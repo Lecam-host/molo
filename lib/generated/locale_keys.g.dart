@@ -66,5 +66,19 @@ abstract class  LocaleKeys {
   static const transaction_has_been_canceled = 'transaction_has_been_canceled';
   static const session_terminated = 'session_terminated';
   static const forgot_password_text = 'forgot_password_text';
+  static const next = 'next';
+  static const french = 'french';
+  static const english = 'english';
+  static const dont_have_an_account = 'dont_have_an_account';
+  static const sign_up = 'sign_up';
+  static const already_have_an_account = 'already_have_an_account';
+  static const create_your_account = 'create_your_account';
+  static const skip = 'skip';
+  static const start = 'start';
+  static const connect_your_account = 'connect_your_account';
+  static const confirm_password = 'confirm_password';
+  static const passwords_do_not_match = 'passwords_do_not_match';
+  static const change_password = 'change_password';
+  static const enter_new_password = 'enter_new_password';
 
 }

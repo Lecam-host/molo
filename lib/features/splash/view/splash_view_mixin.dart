@@ -1,7 +1,7 @@
 part of "splash_view.dart";
 
 mixin SplashViewMixin on State<SplashView> {
-  final UserService _userService = UserService();
+  final UserService _userService = UserService(di(), di());
 
   Future<bool> _future(BuildContext context) async {
     final LoginBloc loginBloc = BlocProvider.of<LoginBloc>(context);

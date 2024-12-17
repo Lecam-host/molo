@@ -23,4 +23,14 @@ class AppConstants {
         return LocaleKeys.type_i_dont_want_to_specify.tr();
     }
   }
+
+  static double defaultPadding = 16.0;
+  static double defaultBorderRadious = 12.0;
+  static Duration defaultDuration = const Duration(milliseconds: 300);
+  static const double borderRadius = 10;
 }
+
+const Duration defaultDuration = Duration(milliseconds: 300);
+const double borderRadius = 10;
+const double defaultBorderRadious = 12.0;
+const double defaultPadding = 16.0;

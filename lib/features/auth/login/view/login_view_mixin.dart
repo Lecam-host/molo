@@ -39,9 +39,11 @@ mixin LoginViewMixin on State<LoginView> {
         }
       }
     } else if (state is ForgotPasswordCheckFailed) {
-      AppHelper.showErrorMessage(context: context, content: LocaleKeys.non_existent_user_message.tr());
+      AppHelper.showErrorMessage(
+          context: context, content: LocaleKeys.non_existent_user_message.tr());
     } else if (state is CheckFailed) {
-      AppHelper.showErrorMessage(context: context, content: LocaleKeys.something_went_wrong.tr());
+      AppHelper.showErrorMessage(
+          context: context, content: LocaleKeys.something_went_wrong.tr());
     }
   }
 
@@ -52,9 +54,11 @@ mixin LoginViewMixin on State<LoginView> {
       context.go(Routes.initial.path);
     } else if (state is LoginFailed) {
       if (state.statusCode == 401) {
-        AppHelper.showErrorMessage(context: context, content: LocaleKeys.check_your_information.tr());
+        AppHelper.showErrorMessage(
+            context: context, content: LocaleKeys.check_your_information.tr());
       } else {
-        AppHelper.showErrorMessage(context: context, content: LocaleKeys.something_went_wrong.tr());
+        AppHelper.showErrorMessage(
+            context: context, content: LocaleKeys.something_went_wrong.tr());
       }
     }
   }
@@ -72,7 +76,8 @@ mixin LoginViewMixin on State<LoginView> {
         ),
       );
     } else {
-      AppHelper.showErrorMessage(context: context, content: httpResponseModel.message);
+      AppHelper.showErrorMessage(
+          context: context, content: httpResponseModel.message);
     }
   }
 }

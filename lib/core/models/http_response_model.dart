@@ -1,12 +1,12 @@
 class HttpResponseModel<T> {
   int? statusCode;
   T? data;
-  String? message;
+  String message;
 
   HttpResponseModel({
     this.statusCode,
     this.data,
-    this.message,
+    required this.message,
   });
 
   factory HttpResponseModel.fromJson(Map<String, dynamic> json) {

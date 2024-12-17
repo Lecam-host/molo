@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:molo/core/utils/router/routes.dart';
 import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
-import 'package:molo/core/constants/color_constants.dart';
 import 'package:molo/generated/locale_keys.g.dart';
+
+import '../../../../core/constants/color_constants.dart';
+import '../../../../core/utils/router/routes.dart';
 
 class PushToRegisterButton extends StatelessWidget {
   const PushToRegisterButton({super.key});
@@ -15,20 +16,42 @@ class PushToRegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, themeState) {
-        return CupertinoButton(
-          padding: EdgeInsets.zero,
+        return TextButton(
           onPressed: () {
-            context.go(Routes.register.path);
+            context.push(Routes.register.path);
           },
-          child: Text(
-            LocaleKeys.register,
-            style: TextStyle(
-              color: themeState.isDark
-                  ? ColorConstants.darkPrimaryIcon
-                  : ColorConstants.lightPrimaryIcon,
+          child: Text.rich(
+            TextSpan(
+              text: LocaleKeys.dont_have_an_account.tr(),
+              children: [
+                TextSpan(
+                  text: LocaleKeys.sign_up.tr(),
+                  style: TextStyle(color: ColorConstants.blueColor),
+                ),
+              ],
             ),
-          ).tr(),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: themeState.isDark
+                      ? ColorConstants.lightBackground
+                      : ColorConstants.darkSecondaryIcon,
+                ),
+          ),
         );
+
+        // CupertinoButton(
+        //   padding: EdgeInsets.zero,
+        //   onPressed: () {
+        //     context.go(Routes.register.path);
+        //   },
+        //   child: Text(
+        //     LocaleKeys.register,
+        //     style: TextStyle(
+        //       color: themeState.isDark
+        //           ? ColorConstants.darkPrimaryIcon
+        //           : ColorConstants.lightPrimaryIcon,
+        //     ),
+        //   ).tr(),
+        // );
       },
     );
   }

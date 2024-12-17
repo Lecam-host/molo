@@ -341,11 +341,11 @@ class _ImageDialogState extends State<ImageDialog>
                             try {
                               profileBloc
                                   .add(const SetLoading(isLoading: true));
-                              profileState.user!.profilePhoto =
-                                  await FirebaseService.uploadImage(
-                                      pickedImage!,
-                                      FirebaseService.getProfilePhotoChild(
-                                          profileState.user!));
+                              //profileState.user!.profilePhoto =
+                              // await FirebaseService.uploadImage(
+                              //     pickedImage!,
+                              //     FirebaseService.getProfilePhotoChild(
+                              //         profileState.user!));
 
                               profileBloc
                                   .add(UpdateUser(user: profileState.user!));

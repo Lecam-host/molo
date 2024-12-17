@@ -15,6 +15,8 @@ import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/common/helpers/app_helper.dart';
 import 'package:molo/features/profile/model/user_model.dart';
 import 'package:molo/features/profile/service/user_service.dart';
+
+import '../../../injection_container.dart';
 part "splash_view_mixin.dart";
 
 class SplashView extends StatefulWidget {

@@ -18,26 +18,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         HttpResponseModel<dynamic> loginResponse = await userService.login(
             email: event.email, password: event.password);
         if (loginResponse.data != null) {
-          HttpResponseModel<dynamic> validateResponse =
-              await userService.validate(token: loginResponse.data);
-
-          if (validateResponse.data != null) {
-            await userService.saveAuthTokenToSP(loginResponse.data);
-            final user = UserModel.fromMap(validateResponse.data);
-            emit(LoginSuccess(
-                user: user,
-                message: validateResponse.message,
-                isLoading: false));
-          } else {
-            emit(LoginFailed(
-                message: validateResponse.message,
-                isLoading: false,
-                statusCode: validateResponse.statusCode));
-          }
+          await userService
+              .getUserInfoByToken(token: loginResponse.data)
+              .then((value) => value.fold((l) {
+                    emit(LoginFailed(
+                        message: l.message,
+                        isLoading: false,
+                        statusCode: l.statusCode));
+                  }, (r) {
+                    emit(LoginSuccess(
+                        user: r,
+                        //   message: r.message,
+                        isLoading: false));
+                  }));
         } else {
           emit(LoginFailed(
-              isLoading: false,
               message: loginResponse.message,
+              isLoading: false,
               statusCode: loginResponse.statusCode));
         }
       } catch (error) {
@@ -86,10 +83,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         HttpResponseModel<dynamic> updateResponse = await userService
             .updatePassword(userId: event.userId, password: event.password);
         if (updateResponse.statusCode == 200) {
-          await FirebaseService.sendMail(
-              toMail: event.email,
-              subject: LocaleKeys.transaction_successful_subject.tr(),
-              text: LocaleKeys.password_update_successful_text.tr());
+          // await FirebaseService.sendMail(
+          //     toMail: event.email,
+          //     subject: LocaleKeys.transaction_successful_subject.tr(),
+          //     text: LocaleKeys.password_update_successful_text.tr());
           emit(UpdatePasswordSuccess(
               message: updateResponse.message, isLoading: false));
         } else {

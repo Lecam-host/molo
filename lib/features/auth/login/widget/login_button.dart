@@ -7,6 +7,8 @@ import 'package:molo/core/constants/color_constants.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/common/helpers/ui_helper.dart';
 
+import '../../../../core/constants/app_constants.dart';
+
 class LoginButton extends StatelessWidget {
   final bool isLoading;
   final void Function()? onPressed;
@@ -24,7 +26,8 @@ class LoginButton extends StatelessWidget {
                 ? ColorConstants.darkPrimaryIcon
                 : ColorConstants.lightPrimaryIcon,
             onPressed: isLoading ? null : onPressed,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(
+                Radius.circular(AppConstants.borderRadius)),
             padding: const EdgeInsets.all(10),
             disabledColor: themeState.isDark
                 ? ColorConstants.darkPrimaryIcon
@@ -34,7 +37,12 @@ class LoginButton extends StatelessWidget {
                 ? const CupertinoActivityIndicator(
                     color: CupertinoColors.white,
                   )
-                : const Text(LocaleKeys.login).tr(),
+                : Text(LocaleKeys.login,
+                    style: TextStyle(
+                      color: !themeState.isDark
+                          ? ColorConstants.lightBackground
+                          : ColorConstants.darkSecondaryIcon,
+                    )).tr(),
           ),
         );
       },

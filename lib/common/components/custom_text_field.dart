@@ -4,6 +4,8 @@ import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/core/constants/color_constants.dart';
 
+import '../../core/constants/app_constants.dart';
+
 class CustomTextField extends StatefulWidget {
   final TextEditingController textEditingController;
   final bool enabled;
@@ -85,7 +87,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               width: 0.5,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: const BorderRadius.all(
+                Radius.circular(AppConstants.borderRadius)),
           ),
           cursorColor: themeState.isDark
               ? ColorConstants.darkPrimaryIcon

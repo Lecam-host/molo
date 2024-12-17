@@ -3,6 +3,7 @@ part of "register_view.dart";
 mixin RegisterViewMixin on State<RegisterView> {
   late TextEditingController _emailTextEditingController;
   late TextEditingController _passwordTextEditingController;
+  late TextEditingController _confirmPasswordTextEditingController;
   late TextEditingController _verificationCodeTextEditingController;
 
   @override
@@ -11,6 +12,7 @@ mixin RegisterViewMixin on State<RegisterView> {
     _emailTextEditingController = TextEditingController();
     _passwordTextEditingController = TextEditingController();
     _verificationCodeTextEditingController = TextEditingController();
+    _confirmPasswordTextEditingController = TextEditingController();
   }
 
   @override
@@ -19,12 +21,15 @@ mixin RegisterViewMixin on State<RegisterView> {
     _emailTextEditingController.dispose();
     _passwordTextEditingController.dispose();
     _verificationCodeTextEditingController.dispose();
+    _confirmPasswordTextEditingController.dispose();
   }
 
   void _submit(RegisterBloc registerBloc) {
-    HttpResponseModel httpResponseModel = AppHelper.checkEmailAndPassword(
+    HttpResponseModel httpResponseModel =
+        AppHelper.checkEmailAndPasswordAndConfirmPassword(
       email: _emailTextEditingController.text.trim(),
       password: _passwordTextEditingController.text.trim(),
+      confirmPassword: _confirmPasswordTextEditingController.text.trim(),
     );
     if (httpResponseModel.statusCode == 200) {
       registerBloc.add(
@@ -34,7 +39,8 @@ mixin RegisterViewMixin on State<RegisterView> {
         ),
       );
     } else {
-      AppHelper.showErrorMessage(context: context, content: httpResponseModel.message);
+      AppHelper.showErrorMessage(
+          context: context, content: httpResponseModel.message);
     }
   }
 
@@ -45,10 +51,12 @@ mixin RegisterViewMixin on State<RegisterView> {
           context.go(Routes.verify.path);
         }
       } else {
-        AppHelper.showErrorMessage(context: context, content: LocaleKeys.user_exists_message.tr());
+        AppHelper.showErrorMessage(
+            context: context, content: LocaleKeys.user_exists_message.tr());
       }
     } else if (state is CheckFailed) {
-      AppHelper.showErrorMessage(context: context, content: LocaleKeys.something_went_wrong.tr());
+      AppHelper.showErrorMessage(
+          context: context, content: LocaleKeys.something_went_wrong.tr());
     }
   }
 }

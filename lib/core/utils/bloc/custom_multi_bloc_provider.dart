@@ -5,6 +5,7 @@ import 'package:molo/features/auth/login/bloc/login_bloc.dart';
 import 'package:molo/features/auth/register/bloc/register_bloc.dart';
 import 'package:molo/features/profile/bloc/profile_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_bloc.dart';
+import 'package:molo/injection_container.dart';
 
 class CustomMultiBlocProvider extends StatelessWidget {
   final Widget child;
@@ -18,11 +19,14 @@ class CustomMultiBlocProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => LoginBloc(userService: UserService())),
+            create: (context) =>
+                LoginBloc(userService: UserService(di(), di()))),
         BlocProvider(
-            create: (context) => RegisterBloc(userService: UserService())),
+            create: (context) =>
+                RegisterBloc(userService: UserService(di(), di()))),
         BlocProvider(
-            create: (context) => ProfileBloc(userService: UserService())),
+            create: (context) =>
+                ProfileBloc(userService: UserService(di(), di()))),
         BlocProvider(create: (context) => ThemeBloc()),
       ],
       child: child,

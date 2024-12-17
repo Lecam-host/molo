@@ -21,10 +21,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           HttpResponseModel<dynamic> loginResponse = await userService.login(
               email: event.email, password: event.password);
           if (loginResponse.data != null) {
-            await FirebaseService.sendMail(
-                toMail: event.email,
-                subject: LocaleKeys.welcome_subject.tr(),
-                text: LocaleKeys.welcome_text.tr());
+            // await FirebaseService.sendMail(
+            //     toMail: event.email,
+            //     subject: LocaleKeys.welcome_subject.tr(),
+            //     text: LocaleKeys.welcome_text.tr());
             HttpResponseModel<dynamic> validateResponse =
                 await userService.validate(token: loginResponse.data);
             await userService.saveAuthTokenToSP(loginResponse.data);
@@ -53,13 +53,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             await userService.check(email: event.email);
         if (checkResponse.data != null) {
           if (!checkResponse.data) {
-            int? verificationCode =
-                await FirebaseService.sendVerificationCode(toMail: event.email);
+            // int? verificationCode =
+            //     await FirebaseService.sendVerificationCode(toMail: event.email);
             emit(
               CheckSuccess(
                 email: event.email,
                 password: event.password,
-                verificationCode: verificationCode,
+                verificationCode: 1,
                 isLoading: false,
                 message: checkResponse.message,
                 data: checkResponse.data,
@@ -90,12 +90,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             await userService.check(email: event.email);
         if (checkResponse.data != null) {
           if (checkResponse.data) {
-            int? verificationCode =
-                await FirebaseService.sendVerificationCode(toMail: event.email);
+            // int? verificationCode =
+            //     await FirebaseService.sendVerificationCode(toMail: event.email);
             emit(
               ForgotPasswordCheckSuccess(
                 email: event.email,
-                verificationCode: verificationCode,
+                verificationCode: 1,
                 isLoading: false,
                 data: checkResponse.data,
                 message: checkResponse.message,

@@ -26,7 +26,36 @@ class AppHelper {
       return HttpResponseModel(
           statusCode: 401, message: LocaleKeys.enter_valid_password.tr());
     }
-    return HttpResponseModel(statusCode: 200);
+    return HttpResponseModel(statusCode: 200, message: "");
+  }
+
+  static HttpResponseModel checkEmailAndPasswordAndConfirmPassword(
+      {required String email,
+      required String password,
+      required String confirmPassword}) {
+    if (!AppConstants.emailRegex.hasMatch(email)) {
+      return HttpResponseModel(
+          statusCode: 401, message: LocaleKeys.enter_valid_email.tr());
+    }
+    if (!AppConstants.passwordRegex.hasMatch(password)) {
+      return HttpResponseModel(
+          statusCode: 401, message: LocaleKeys.enter_valid_password.tr());
+    }
+    if (password != confirmPassword) {
+      return HttpResponseModel(
+          statusCode: 401, message: LocaleKeys.passwords_do_not_match.tr());
+    }
+    return HttpResponseModel(statusCode: 200, message: "");
+  }
+
+  static HttpResponseModel checkConfirmPassword(
+      {required String password, required String confirmPassword}) {
+    if (password != confirmPassword) {
+      return HttpResponseModel(
+          statusCode: 401, message: LocaleKeys.passwords_do_not_match.tr());
+    }
+
+    return HttpResponseModel(statusCode: 200, message: "");
   }
 
   static HttpResponseModel checkEmail({required String email}) {
@@ -34,7 +63,7 @@ class AppHelper {
       return HttpResponseModel(
           statusCode: 401, message: LocaleKeys.enter_valid_email.tr());
     }
-    return HttpResponseModel(statusCode: 200);
+    return HttpResponseModel(statusCode: 200, message: "");
   }
 
   static HttpResponseModel checkPassword({required String password}) {
@@ -42,7 +71,7 @@ class AppHelper {
       return HttpResponseModel(
           statusCode: 401, message: LocaleKeys.enter_valid_password.tr());
     }
-    return HttpResponseModel(statusCode: 200);
+    return HttpResponseModel(statusCode: 200, message: "");
   }
 
   static void showErrorMessage(

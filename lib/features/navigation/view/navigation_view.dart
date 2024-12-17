@@ -46,13 +46,11 @@ class _NavigationViewState extends State<NavigationView> {
         ),
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.house_alt_fill),
+            icon: const Icon(Icons.house),
             label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(
-              CupertinoIcons.settings_solid,
-            ),
+            icon: const Icon(Icons.settings),
             label: LocaleKeys.settings.tr(),
           ),
         ],
