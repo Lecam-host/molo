@@ -1,11 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:molo/features/auth/login/bloc/login_event.dart';
 import 'package:molo/features/auth/login/bloc/login_state.dart';
-import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/core/models/http_response_model.dart';
 import 'package:molo/features/profile/model/user_model.dart';
-import 'package:molo/core/services/firebase_service.dart';
 import 'package:molo/features/profile/service/user_service.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -18,8 +15,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         HttpResponseModel<dynamic> loginResponse = await userService.login(
             email: event.email, password: event.password);
         if (loginResponse.data != null) {
+          UserTokensModel userTokensModel = UserTokensModel.fromMap(
+            loginResponse.data,
+          );
           await userService
-              .getUserInfoByToken(token: loginResponse.data)
+              .getUserInfoByToken(token: userTokensModel.accessToken)
               .then((value) => value.fold((l) {
                     emit(LoginFailed(
                         message: l.message,

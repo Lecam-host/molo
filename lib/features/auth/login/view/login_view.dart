@@ -98,9 +98,9 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                               LoginButton(
                                 isLoading: state.isLoading,
                                 onPressed: () {
-                                  context.go(Routes.navigation.path);
+                                  //context.go(Routes.navigation.path);
 
-                                  // _submit(loginBloc);
+                                  _submit(loginBloc);
                                 },
                               ),
                               const SizedBox(height: 10),

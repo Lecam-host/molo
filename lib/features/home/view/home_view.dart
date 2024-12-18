@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: const Column(
         children: [
-          OffersCarousel(),
+          // OffersCarousel(),
           // ...List.generate(
           //   7,
           //   (index) => Container(

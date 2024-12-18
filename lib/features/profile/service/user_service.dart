@@ -21,19 +21,19 @@ class UserService extends UserInterface {
   Future<HttpResponseModel> login(
       {required String email, required String password}) async {
     if (await networkInfo.isConnected) {
+      var url = '$_baseUrl/signin';
+      var response = await httpHelper.post(
+        url,
+        data: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+      );
       try {
-        var url = '$_baseUrl/signin';
-        var response = await httpHelper.post(
-          url,
-          data: jsonEncode({
-            'email': email,
-            'password': password,
-          }),
-        );
         if (response.statusCode == 200) {
           return HttpResponseModel(
             statusCode: response.statusCode,
-            data: response.data["access_token"],
+            data: response.data["data"],
             message: response.data["message"],
           );
         } else {
