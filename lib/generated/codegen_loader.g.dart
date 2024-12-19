@@ -93,7 +93,11 @@ class CodegenLoader extends AssetLoader{
   "confirm_password": "Confirm password",
   "passwords_do_not_match": "Passwords do not match!",
   "change_password": "Change password",
-  "enter_new_password": "Enter new password"
+  "enter_new_password": "Enter new password",
+  "store_in_vogue": "Store in Vogue",
+  "see_all": "See all",
+  "upcoming": "Upcoming",
+  "payments": "Payments"
 };
 static const Map<String,dynamic> fr = {
   "email": "E-mail",
@@ -174,7 +178,11 @@ static const Map<String,dynamic> fr = {
   "confirm_password": "Confirmer le mot de passe",
   "passwords_do_not_match": "Les mots de passe ne correspondent pas !",
   "change_password": "Changer le mot de passe",
-  "enter_new_password": "Entrez votre nouveau mot de passe"
+  "enter_new_password": "Entrez votre nouveau mot de passe",
+  "store_in_vogue": "Boutique en vogue",
+  "see_all": "Voir tout",
+  "upcoming": "Payement a venir",
+  "payments": "Paiements"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "fr": fr};
 }

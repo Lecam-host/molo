@@ -6,6 +6,8 @@ import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/features/home/view/home_view.dart';
 import 'package:molo/features/settings/view/settings_view.dart';
 
+import '../../paiements/paiement_view.dart';
+
 class NavigationView extends StatefulWidget {
   const NavigationView({super.key});
 
@@ -46,11 +48,15 @@ class _NavigationViewState extends State<NavigationView> {
         ),
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.house),
+            icon: const Icon(Icons.shopping_bag_outlined),
             label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.receipt_long),
+            label: LocaleKeys.payments.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.account_balance_wallet_outlined),
             label: LocaleKeys.settings.tr(),
           ),
         ],
@@ -66,9 +72,16 @@ class _NavigationViewState extends State<NavigationView> {
           case 1:
             return CupertinoTabView(
               builder: (context) {
+                return const PaymentView();
+              },
+            );
+          case 2:
+            return CupertinoTabView(
+              builder: (context) {
                 return const SettingsView();
               },
             );
+
           default:
             tabController.index = 0;
             return const HomeView();

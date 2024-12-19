@@ -80,5 +80,9 @@ abstract class  LocaleKeys {
   static const passwords_do_not_match = 'passwords_do_not_match';
   static const change_password = 'change_password';
   static const enter_new_password = 'enter_new_password';
+  static const store_in_vogue = 'store_in_vogue';
+  static const see_all = 'see_all';
+  static const upcoming = 'upcoming';
+  static const payments = 'payments';
 
 }

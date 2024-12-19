@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../common/components/Banner/M/banner_m_style_1.dart';
-import '../../../common/components/Banner/M/banner_m_style_2.dart';
-import '../../../common/components/Banner/M/banner_m_style_3.dart';
-import '../../../common/components/Banner/M/banner_m_style_4.dart';
 import '../../../common/components/dot_indicators.dart';
 import '../../../core/constants/app_constants.dart';
 
@@ -30,27 +27,35 @@ class _OffersCarouselState extends State<OffersCarousel> {
     //   press: () {},
     // ),
     BannerMStyle1(
-      text: "New items with \nFree shipping",
+      text: "Acherter vos telephones a votre rythme",
+      image:
+          "https://images.pexels.com/photos/15493878/pexels-photo-15493878/free-photo-of-main-apple-pomme-smartphone.jpeg?auto=compress&cs=tinysrgb&w=600",
       press: () {},
     ),
-    BannerMStyle2(
-      title: "Black \nfriday",
-      subtitle: "Collection",
-      discountParcent: 50,
+    BannerMStyle1(
+      text: "Habillez-vous et payer apres",
+      image:
+          "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=600",
       press: () {},
     ),
-    BannerMStyle3(
-      title: "Grab \nyours now",
-      discountParcent: 50,
-      press: () {},
-    ),
-    BannerMStyle4(
-      // image: , user your image
-      title: "SUMMER \nSALE",
-      subtitle: "SPECIAL OFFER",
-      discountParcent: 80,
-      press: () {},
-    ),
+    // BannerMStyle2(
+    //   title: "Black \nfriday",
+    //   subtitle: "Collection",
+    //   discountParcent: 50,
+    //   press: () {},
+    // ),
+    // BannerMStyle3(
+    //   title: "Grab \nyours now",
+    //   discountParcent: 50,
+    //   press: () {},
+    // ),
+    // BannerMStyle4(
+    //   // image: , user your image
+    //   title: "SUMMER \nSALE",
+    //   subtitle: "SPECIAL OFFER",
+    //   discountParcent: 80,
+    //   press: () {},
+    // ),
   ];
 
   @override

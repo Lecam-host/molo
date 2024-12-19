@@ -77,7 +77,11 @@
     "confirm_password":"Confirm password",
     "passwords_do_not_match":"Passwords do not match!",
      "change_password":"Change password",
-    "enter_new_password":"Enter new password"
+    "enter_new_password":"Enter new password",
+     "store_in_vogue":"Store in Vogue",
+     "see_all":"See all",
+     "upcoming":"Upcoming",
+     "payments":"Payments"
 
     
 

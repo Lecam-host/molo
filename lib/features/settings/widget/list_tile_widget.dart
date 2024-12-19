@@ -37,7 +37,12 @@ class ListTileWidget extends StatelessWidget {
           onTap: onTap,
           title: Text(
             title,
-            style: titleTextStyle,
+            style: TextStyle(
+              color: state.isDark
+                  ? ColorConstants.lightBackground
+                  : ColorConstants.darkBackground,
+              fontSize: 16,
+            ),
           ),
           leading: leadingIcon == null
               ? null
