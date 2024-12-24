@@ -5,6 +5,8 @@ enum Routes {
   onBoarding('/onBoarding'),
   register('/register'),
   verify('/verify'),
+  verifyEmailView('/verifyEmailView'),
+
   profile('/profile'),
   settings('/settings'),
   update_password('/update_password'),

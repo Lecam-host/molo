@@ -1,11 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:molo/features/auth/register/bloc/register_event.dart';
 import 'package:molo/features/auth/register/bloc/register_state.dart';
-import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/core/models/http_response_model.dart';
 import 'package:molo/features/profile/model/user_model.dart';
-import 'package:molo/core/services/firebase_service.dart';
 import 'package:molo/features/profile/service/user_service.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
@@ -82,7 +79,39 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
             message: error.toString(), isLoading: false, data: null));
       }
     });
-
+    on<CheckEmailButtonPressed>((event, emit) async {
+      emit(const RegisterState(isLoading: true));
+      try {
+        HttpResponseModel<dynamic> checkResponse =
+            await userService.verifyEmail(email: event.email);
+        if (checkResponse.data != null) {
+          if (!checkResponse.data) {
+            // int? verificationCode =
+            //     await FirebaseService.sendVerificationCode(toMail: event.email);
+            emit(
+              CheckEmailSuccess(
+                email: event.email,
+                isLoading: false,
+                message: checkResponse.message,
+                data: checkResponse.data,
+              ),
+            );
+          } else {
+            emit(
+              CheckEmailSuccess(
+                email: event.email,
+                isLoading: false,
+                data: checkResponse.data,
+                message: checkResponse.message,
+              ),
+            );
+          }
+        }
+      } catch (error) {
+        emit(CheckFailed(
+            message: error.toString(), isLoading: false, data: null));
+      }
+    });
     on<ForgotPasswordButtonPressed>((event, emit) async {
       emit(const RegisterState(isLoading: true));
       try {

@@ -106,7 +106,7 @@ class _LoginViewState extends State<LoginView> with LoginViewMixin {
                               const SizedBox(height: 10),
                               TextButton(
                                 onPressed: () {
-                                  context.push(Routes.verify.path);
+                                  context.push(Routes.verifyEmailView.path);
                                 },
                                 child: Text(
                                   LocaleKeys.forgot_password.tr(),

@@ -84,5 +84,8 @@ abstract class  LocaleKeys {
   static const see_all = 'see_all';
   static const upcoming = 'upcoming';
   static const payments = 'payments';
+  static const enter_your_email = 'enter_your_email';
+  static const enter_your_email_to_confirm = 'enter_your_email_to_confirm';
+  static const verify_your_email = 'verify_your_email';
 
 }

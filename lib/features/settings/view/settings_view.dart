@@ -21,7 +21,6 @@ import 'package:molo/common/helpers/ui_helper.dart';
 import 'package:molo/features/profile/widget/profile_photo_widget.dart';
 import 'package:molo/features/settings/widget/list_section_widet.dart';
 import 'package:molo/features/settings/widget/list_tile_widget.dart';
-import 'package:molo/common/widgets/custom_scaffold.dart';
 import 'package:molo/common/widgets/unauthenticated_user_widget.dart';
 part "settings_view_mixin.dart";
 

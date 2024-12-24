@@ -97,7 +97,10 @@ class CodegenLoader extends AssetLoader{
   "store_in_vogue": "Store in Vogue",
   "see_all": "See all",
   "upcoming": "Upcoming",
-  "payments": "Payments"
+  "payments": "Payments",
+  "enter_your_email": "Enter your email",
+  "enter_your_email_to_confirm": "Enter your email to confirm your account",
+  "verify_your_email": "Verify your email"
 };
 static const Map<String,dynamic> fr = {
   "email": "E-mail",
@@ -182,7 +185,10 @@ static const Map<String,dynamic> fr = {
   "store_in_vogue": "Boutique en vogue",
   "see_all": "Voir tout",
   "upcoming": "Payement a venir",
-  "payments": "Paiements"
+  "payments": "Paiements",
+  "enter_your_email": "Entrez votre email",
+  "enter_your_email_to_confirm": "Entrez votre email pour confirmer votre compte",
+  "verify_your_email": "Vérifiez votre email"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "fr": fr};
 }

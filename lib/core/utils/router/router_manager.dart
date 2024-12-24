@@ -10,6 +10,8 @@ import 'package:molo/features/profile/view/profile_view.dart';
 import 'package:molo/features/settings/view/settings_view.dart';
 import 'package:molo/features/splash/view/splash_view.dart';
 
+import '../../../features/auth/verify_email/view/verify_email_view.dart';
+
 final class RouterManager {
   RouterManager._();
   static GoRouter get router => _routes;
@@ -51,6 +53,10 @@ final class RouterManager {
       GoRoute(
         path: Routes.onBoarding.path,
         builder: (context, state) => const OnboardingScreen(),
+      ),
+      GoRoute(
+        path: Routes.verifyEmailView.path,
+        builder: (context, state) => const VerifyEmailView(),
       ),
     ],
   );

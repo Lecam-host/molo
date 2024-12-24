@@ -55,6 +55,40 @@ class UserService extends UserInterface {
     }
   }
 
+  Future<HttpResponseModel> verifyEmail({
+    required String email,
+  }) async {
+    if (await networkInfo.isConnected) {
+      var url = '$_baseUrl/forgot-password';
+      var response = await httpHelper.post(url, queryParameters: {
+        'email': email,
+      });
+      try {
+        if (response.statusCode == 200) {
+          return HttpResponseModel(
+            statusCode: response.statusCode,
+            data: response.data["data"],
+            message: response.data["message"],
+          );
+        } else {
+          return HttpResponseModel(
+            statusCode: response.statusCode,
+            message: response.data["message"],
+          );
+        }
+      } catch (e) {
+        return HttpResponseModel(
+          statusCode: ErrorHandler.handle(e).failure.code,
+          message: ErrorHandler.handle(e).failure.message,
+        );
+      }
+    } else {
+      return HttpResponseModel(
+        message: DataSource.noInternetConnection.getFailure().message,
+      );
+    }
+  }
+
   @override
   Future<HttpResponseModel> create(
       {required String email, required String password}) async {

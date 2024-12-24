@@ -41,75 +41,71 @@ class _VerifyViewState extends State<VerifyView> with VerifyViewMixin {
                 body: SafeArea(
                   child: PopScope(
                     canPop: !registerState.isLoading,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          AuthHeaderWidget(
-                            title: LocaleKeys.verification_code.tr(),
-                            subtitle:
-                                LocaleKeys.enter_verification_code_prefix.tr(),
-                          ),
-                          // Text(
-                          //   LocaleKeys.enter_verification_code_prefix.tr(),
-                          //   style: TextStyle(
-                          //     color: themeState.isDark
-                          //         ? ColorConstants.lightTextField
-                          //         : ColorConstants.darkTextField,
-                          //   ),
-                          // ).tr(),
-                          const SizedBox(height: 30),
-                          (registerState is CheckSuccess ||
-                                  registerState is ForgotPasswordCheckSuccess)
-                              ? Column(
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                              text: LocaleKeys
-                                                  .enter_verification_code_prefix
-                                                  .tr()),
-                                          TextSpan(
-                                              text: registerState
-                                                      is CheckSuccess
-                                                  ? registerState.email
-                                                  : registerState
-                                                          is ForgotPasswordCheckSuccess
-                                                      ? registerState.email
-                                                      : "",
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                          TextSpan(
-                                              text: LocaleKeys
-                                                  .enter_verification_code_suffix
-                                                  .tr()),
-                                        ],
-                                        style: TextStyle(
-                                          color: themeState.isDark
-                                              ? CupertinoColors.white
-                                              : CupertinoColors.black,
-                                        ),
+                    child: Column(
+                      children: [
+                        AuthHeaderWidget(
+                          title: LocaleKeys.verification_code.tr(),
+                          subtitle:
+                              LocaleKeys.enter_verification_code_prefix.tr(),
+                        ),
+                        // Text(
+                        //   LocaleKeys.enter_verification_code_prefix.tr(),
+                        //   style: TextStyle(
+                        //     color: themeState.isDark
+                        //         ? ColorConstants.lightTextField
+                        //         : ColorConstants.darkTextField,
+                        //   ),
+                        // ).tr(),
+                        const SizedBox(height: 30),
+                        (registerState is CheckSuccess ||
+                                registerState is ForgotPasswordCheckSuccess)
+                            ? Column(
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                            text: LocaleKeys
+                                                .enter_verification_code_prefix
+                                                .tr()),
+                                        TextSpan(
+                                            text: registerState is CheckSuccess
+                                                ? registerState.email
+                                                : registerState
+                                                        is ForgotPasswordCheckSuccess
+                                                    ? registerState.email
+                                                    : "",
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                        TextSpan(
+                                            text: LocaleKeys
+                                                .enter_verification_code_suffix
+                                                .tr()),
+                                      ],
+                                      style: TextStyle(
+                                        color: themeState.isDark
+                                            ? CupertinoColors.white
+                                            : CupertinoColors.black,
                                       ),
                                     ),
-                                    const SizedBox(height: 10),
-                                  ],
-                                )
-                              : const SizedBox(),
-                          VerificationCodeTextField(
-                            enabled: !registerState.isLoading,
-                            textEditingController:
-                                _verificationCodeTextEditingController,
-                            onPressed: () async {
-                              context
-                                  .pushReplacement(Routes.update_password.path);
-                              // await _register(
-                              //     registerState: registerState,
-                              //     registerBloc: registerBloc);
-                            },
-                          ),
-                        ],
-                      ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                ],
+                              )
+                            : const SizedBox(),
+                        VerificationCodeTextField(
+                          enabled: !registerState.isLoading,
+                          textEditingController:
+                              _verificationCodeTextEditingController,
+                          onPressed: () async {
+                            context
+                                .pushReplacement(Routes.update_password.path);
+                            // await _register(
+                            //     registerState: registerState,
+                            //     registerBloc: registerBloc);
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),

@@ -15,6 +15,13 @@ class CheckButtonPressed extends RegisterEvent {
   List<Object?> get props => [email, password];
 }
 
+class CheckEmailButtonPressed extends RegisterEvent {
+  final String email;
+  const CheckEmailButtonPressed({required this.email});
+  @override
+  List<Object?> get props => [email];
+}
+
 class RegisterButtonPressed extends RegisterEvent {
   final String email;
   final String password;

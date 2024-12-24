@@ -43,6 +43,19 @@ class CheckSuccess extends RegisterState {
   List<Object?> get props => [message, isLoading, data];
 }
 
+class CheckEmailSuccess extends RegisterState {
+  final String email;
+  const CheckEmailSuccess({
+    required this.email,
+    super.message,
+    super.isLoading,
+    super.data,
+  });
+
+  @override
+  List<Object?> get props => [message, isLoading, data];
+}
+
 class CheckFailed extends RegisterState {
   const CheckFailed({super.message, super.isLoading, super.data});
 

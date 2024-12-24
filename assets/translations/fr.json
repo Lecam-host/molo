@@ -81,5 +81,9 @@
     "store_in_vogue":"Boutique en vogue",
     "see_all":"Voir tout",
     "upcoming":"Payement a venir",
-    "payments": "Paiements"
+    "payments": "Paiements",
+    "enter_your_email":"Entrez votre email",
+    "enter_your_email_to_confirm":"Entrez votre email pour confirmer votre compte",
+      "verify_your_email":"Vérifiez votre email"
+
 }

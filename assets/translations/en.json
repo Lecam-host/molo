@@ -76,12 +76,15 @@
     "connect_your_account":"Connect your account",
     "confirm_password":"Confirm password",
     "passwords_do_not_match":"Passwords do not match!",
-     "change_password":"Change password",
+    "change_password":"Change password",
     "enter_new_password":"Enter new password",
-     "store_in_vogue":"Store in Vogue",
-     "see_all":"See all",
-     "upcoming":"Upcoming",
-     "payments":"Payments"
+    "store_in_vogue":"Store in Vogue",
+    "see_all":"See all",
+    "upcoming":"Upcoming",
+    "payments":"Payments",
+    "enter_your_email":"Enter your email",
+    "enter_your_email_to_confirm":"Enter your email to confirm your account",
+    "verify_your_email":"Verify your email"
 
     
 
