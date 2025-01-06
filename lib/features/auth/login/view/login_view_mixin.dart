@@ -51,7 +51,7 @@ mixin LoginViewMixin on State<LoginView> {
     final ProfileBloc profileBloc = BlocProvider.of<ProfileBloc>(context);
     if (state is LoginSuccess) {
       profileBloc.add(SetUser(user: state.user));
-      context.go(Routes.initial.path);
+      context.go(Routes.navigation.path);
     } else if (state is LoginFailed) {
       if (state.statusCode == 401) {
         AppHelper.showErrorMessage(

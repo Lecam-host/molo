@@ -19,19 +19,19 @@ mixin ProfileViewMixin on State<ProfileView> {
     birthdayTextEditingController = TextEditingController();
     genderTextEditingController = TextEditingController();
 
-    if (profileState.user != null) {
-      emailTextEditingController.text = profileState.user!.email;
-      firstNameTextEditingController.text = profileState.user!.firstName;
-      lastNameTextEditingController.text = profileState.user!.lastName;
-      if (profileState.user!.dateOfBirth.toUtc() != AppConstants.nullDate) {
-        _selectedDate = profileState.user!.dateOfBirth;
-        birthdayTextEditingController.text = dateFormat.format(_selectedDate ?? DateTime.now());
-      }
-      if (profileState.user!.gender >= 1 && profileState.user!.gender <= 3) {
-        _selectedGender = profileState.user!.gender;
-        genderTextEditingController.text = AppConstants.getGender(profileState.user!.gender);
-      }
-    }
+    // if (profileState.user != null) {
+    //   emailTextEditingController.text = profileState.user!.email;
+    //   firstNameTextEditingController.text = profileState.user!.firstName;
+    //   lastNameTextEditingController.text = profileState.user!.lastName;
+    //   if (profileState.user!.dateOfBirth.toUtc() != AppConstants.nullDate) {
+    //     _selectedDate = profileState.user!.dateOfBirth;
+    //     birthdayTextEditingController.text = dateFormat.format(_selectedDate ?? DateTime.now());
+    //   }
+    //   if (profileState.user!.gender >= 1 && profileState.user!.gender <= 3) {
+    //     _selectedGender = profileState.user!.gender;
+    //     genderTextEditingController.text = AppConstants.getGender(profileState.user!.gender);
+    //   }
+    // }
 
     super.initState();
   }
@@ -47,7 +47,8 @@ mixin ProfileViewMixin on State<ProfileView> {
   }
 
   void _listener(ProfileState state) {
-    final ValidateSuccess validateSuccess = context.read<LoginBloc>().state as ValidateSuccess;
+    final ValidateSuccess validateSuccess =
+        context.read<LoginBloc>().state as ValidateSuccess;
     final ProfileBloc profileBloc = BlocProvider.of<ProfileBloc>(context);
     if (state is UpdateUserSuccess) {
       if (context.canPop()) {
@@ -57,7 +58,9 @@ mixin ProfileViewMixin on State<ProfileView> {
       }
     } else if (state is UpdateUserFailed) {
       profileBloc.add(SetUser(user: validateSuccess.user));
-      AppHelper.showErrorMessage(context: context, content: state.message ?? LocaleKeys.something_went_wrong.tr());
+      AppHelper.showErrorMessage(
+          context: context,
+          content: state.message ?? LocaleKeys.something_went_wrong.tr());
     }
   }
 

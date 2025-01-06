@@ -91,24 +91,24 @@ class _ProfileViewState extends State<ProfileView> with ProfileViewMixin {
                                       children: [
                                         Row(
                                           children: [
-                                            CupertinoButton(
-                                              padding: EdgeInsets.zero,
-                                              onPressed: () {
-                                                showCupertinoDialog(
-                                                  barrierDismissible: true,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return ImageDialog(
-                                                        imageUrl: profileState
-                                                            .user!
-                                                            .profilePhoto);
-                                                  },
-                                                );
-                                              },
-                                              child: ProfilePhotoWidget(
-                                                  imageUrl: profileState
-                                                      .user!.profilePhoto),
-                                            ),
+                                            // CupertinoButton(
+                                            //   padding: EdgeInsets.zero,
+                                            //   onPressed: () {
+                                            //     showCupertinoDialog(
+                                            //       barrierDismissible: true,
+                                            //       context: context,
+                                            //       builder: (context) {
+                                            //         return ImageDialog(
+                                            //             imageUrl: profileState
+                                            //                 .user!
+                                            //                 .profilePhoto);
+                                            //       },
+                                            //     );
+                                            //   },
+                                            //   child: ProfilePhotoWidget(
+                                            //       imageUrl: profileState
+                                            //           .user!.profilePhoto),
+                                            // ),
                                             Expanded(
                                               child: Padding(
                                                 padding:
@@ -121,30 +121,30 @@ class _ProfileViewState extends State<ProfileView> with ProfileViewMixin {
                                             ),
                                           ],
                                         ),
-                                        CupertinoButton(
-                                          onPressed: () {
-                                            showCupertinoDialog(
-                                              barrierDismissible: true,
-                                              context: context,
-                                              builder: (context) {
-                                                return ImageDialog(
-                                                    imageUrl: profileState
-                                                        .user!.profilePhoto);
-                                              },
-                                            );
-                                          },
-                                          padding: EdgeInsets.zero,
-                                          child: Text(
-                                            LocaleKeys.edit,
-                                            style: TextStyle(
-                                              color: themeState.isDark
-                                                  ? ColorConstants
-                                                      .darkPrimaryIcon
-                                                  : ColorConstants
-                                                      .lightPrimaryIcon,
-                                            ),
-                                          ).tr(),
-                                        ),
+                                        // CupertinoButton(
+                                        //   onPressed: () {
+                                        //     showCupertinoDialog(
+                                        //       barrierDismissible: true,
+                                        //       context: context,
+                                        //       builder: (context) {
+                                        //         return ImageDialog(
+                                        //             imageUrl: profileState
+                                        //                 .user!.profilePhoto);
+                                        //       },
+                                        //     );
+                                        //   },
+                                        //   padding: EdgeInsets.zero,
+                                        //   child: Text(
+                                        //     LocaleKeys.edit,
+                                        //     style: TextStyle(
+                                        //       color: themeState.isDark
+                                        //           ? ColorConstants
+                                        //               .darkPrimaryIcon
+                                        //           : ColorConstants
+                                        //               .lightPrimaryIcon,
+                                        //     ),
+                                        //   ).tr(),
+                                        // ),
                                       ],
                                     ),
                                     CupertinoListSection(

@@ -84,7 +84,11 @@
     "payments":"Payments",
     "enter_your_email":"Enter your email",
     "enter_your_email_to_confirm":"Enter your email to confirm your account",
-    "verify_your_email":"Verify your email"
+    "verify_your_email":"Verify your email",
+    "continu":"Continue",
+    "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission":"We'll store any info you give us securely and only share it with your permission.",
+    "signing_up_time":"Signing up time",
+    "tell_us_about_yourself":"Tell us about yourself"
 
     
 

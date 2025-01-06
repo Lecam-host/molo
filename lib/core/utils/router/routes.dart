@@ -10,6 +10,8 @@ enum Routes {
   profile('/profile'),
   settings('/settings'),
   update_password('/update_password'),
+  tell_us_about_ask('/tell_us_about_ask'),
+  completeAccountInfoView('/CompleteAccountInfoView'),
   ;
 
   final String path;

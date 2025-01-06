@@ -100,7 +100,11 @@ class CodegenLoader extends AssetLoader{
   "payments": "Payments",
   "enter_your_email": "Enter your email",
   "enter_your_email_to_confirm": "Enter your email to confirm your account",
-  "verify_your_email": "Verify your email"
+  "verify_your_email": "Verify your email",
+  "continu": "Continue",
+  "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission": "We'll store any info you give us securely and only share it with your permission.",
+  "signing_up_time": "Signing up time",
+  "tell_us_about_yourself": "Tell us about yourself"
 };
 static const Map<String,dynamic> fr = {
   "email": "E-mail",
@@ -188,7 +192,11 @@ static const Map<String,dynamic> fr = {
   "payments": "Paiements",
   "enter_your_email": "Entrez votre email",
   "enter_your_email_to_confirm": "Entrez votre email pour confirmer votre compte",
-  "verify_your_email": "Vérifiez votre email"
+  "verify_your_email": "Vérifiez votre email",
+  "continu": "Continuer",
+  "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission": "Nous stockerons en toute sécurité toutes les informations que vous nous fournissez et ne les partagerons qu'avec votre permission.",
+  "signing_up_time": "Heure d'inscription",
+  "tell_us_about_yourself": "Parlez-nous de vous"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "fr": fr};
 }

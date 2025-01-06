@@ -26,10 +26,11 @@ mixin SplashViewMixin on State<SplashView> {
   }
 
   bool _checkValues(UserModel userModel) {
-    if (userModel.firstName.isEmpty) return false;
-    if (userModel.lastName.isEmpty) return false;
-    if (userModel.dateOfBirth.toUtc() == AppConstants.nullDate) return false;
-    if (userModel.gender == 0) return false;
+    // if (userModel.firstName.isEmpty) return false;
+    if (userModel.email.isEmpty) return false;
+    //if (userModel.lastName.isEmpty) return false;
+    // if (userModel.dateOfBirth.toUtc() == AppConstants.nullDate) return false;
+    // if (userModel.gender == 0) return false;
     return true;
   }
 

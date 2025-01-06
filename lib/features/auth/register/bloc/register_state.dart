@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:molo/features/profile/model/user_model.dart';
 
-class RegisterState extends Equatable {
+class RegisterState<T> extends Equatable {
   final String? message;
   final bool isLoading;
-  final bool? data;
+  final T? data;
   const RegisterState({this.message, this.isLoading = false, this.data});
 
   @override
@@ -44,9 +44,9 @@ class CheckSuccess extends RegisterState {
 }
 
 class CheckEmailSuccess extends RegisterState {
-  final String email;
+  final int statusCode;
   const CheckEmailSuccess({
-    required this.email,
+    required this.statusCode,
     super.message,
     super.isLoading,
     super.data,

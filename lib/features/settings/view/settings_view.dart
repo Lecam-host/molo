@@ -96,9 +96,9 @@ class _SettingsViewState extends State<SettingsView> with SettingsViewMixin {
                                               Text(profileState.user!.email),
                                           leadingSize:
                                               UIHelper.deviceWidth * 0.12,
-                                          leading: ProfilePhotoWidget(
-                                              imageUrl: profileState
-                                                  .user!.profilePhoto),
+                                          // leading: ProfilePhotoWidget(
+                                          //     imageUrl: profileState
+                                          //         .user!.profilePhoto),
                                           trailing: Icon(
                                             CupertinoIcons.forward,
                                             color: themeState.isDark
@@ -108,19 +108,19 @@ class _SettingsViewState extends State<SettingsView> with SettingsViewMixin {
                                                     .lightSecondaryIcon,
                                           ),
                                         ),
-                                        ListTileWidget(
-                                          leadingIcon:
-                                              CupertinoIcons.calendar_today,
-                                          leadingColor:
-                                              CupertinoColors.systemCyan,
-                                          title:
-                                              "${LocaleKeys.you_joined_on_prefix.tr()}${AppConstants.dateformat.format(profileState.user!.joinDate)}${LocaleKeys.you_joined_on_suffix.tr()}",
-                                          titleTextStyle: TextStyle(
-                                              color: themeState.isDark
-                                                  ? ColorConstants.darkInactive
-                                                  : ColorConstants
-                                                      .lightInactive),
-                                        )
+                                        // ListTileWidget(
+                                        //   leadingIcon:
+                                        //       CupertinoIcons.calendar_today,
+                                        //   leadingColor:
+                                        //       CupertinoColors.systemCyan,
+                                        //   title:
+                                        //       "${LocaleKeys.you_joined_on_prefix.tr()}${AppConstants.dateformat.format(profileState.user!.joinDate)}${LocaleKeys.you_joined_on_suffix.tr()}",
+                                        //   titleTextStyle: TextStyle(
+                                        //       color: themeState.isDark
+                                        //           ? ColorConstants.darkInactive
+                                        //           : ColorConstants
+                                        //               .lightInactive),
+                                        // )
                                       ],
                                     ),
                                   ],

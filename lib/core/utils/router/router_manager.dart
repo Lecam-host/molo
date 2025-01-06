@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:molo/core/utils/router/routes.dart';
+import 'package:molo/features/auth/kyc/complete_account_info_view.dart';
+import 'package:molo/features/auth/kyc/tell_us_about_view.dart';
 import 'package:molo/features/auth/login/view/login_view.dart';
 import 'package:molo/features/auth/password/view/update_password_view.dart';
 import 'package:molo/features/auth/register/view/register_view.dart';
@@ -57,6 +59,14 @@ final class RouterManager {
       GoRoute(
         path: Routes.verifyEmailView.path,
         builder: (context, state) => const VerifyEmailView(),
+      ),
+      GoRoute(
+        path: Routes.tell_us_about_ask.path,
+        builder: (context, state) => const TellUsAboutAskPage(),
+      ),
+      GoRoute(
+        path: Routes.completeAccountInfoView.path,
+        builder: (context, state) => const CompleteAccountInfoView(),
       ),
     ],
   );

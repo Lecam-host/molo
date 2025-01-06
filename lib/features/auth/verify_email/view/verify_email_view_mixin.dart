@@ -32,10 +32,9 @@ mixin VerifyEmailViewMixin on State<VerifyEmailView> {
   }
 
   void _listener(RegisterState state) {
-    final ProfileBloc profileBloc = BlocProvider.of<ProfileBloc>(context);
-    if (state is RegisterSuccess) {
-      profileBloc.add(SetUser(user: state.user));
-      context.go(Routes.initial.path);
+    // final RegisterBloc registerBloc = BlocProvider.of<RegisterBloc>(context);
+    if (state is CheckEmailSuccess) {
+      context.push(Routes.verify.path);
     } else if (state is RegisterFailed) {
       AppHelper.showErrorMessage(
           context: context, content: LocaleKeys.something_went_wrong.tr());

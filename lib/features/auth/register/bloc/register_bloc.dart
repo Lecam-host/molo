@@ -84,28 +84,23 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       try {
         HttpResponseModel<dynamic> checkResponse =
             await userService.verifyEmail(email: event.email);
-        if (checkResponse.data != null) {
-          if (!checkResponse.data) {
-            // int? verificationCode =
-            //     await FirebaseService.sendVerificationCode(toMail: event.email);
-            emit(
-              CheckEmailSuccess(
-                email: event.email,
-                isLoading: false,
-                message: checkResponse.message,
-                data: checkResponse.data,
-              ),
-            );
-          } else {
-            emit(
-              CheckEmailSuccess(
-                email: event.email,
-                isLoading: false,
-                data: checkResponse.data,
-                message: checkResponse.message,
-              ),
-            );
-          }
+        if (checkResponse.statusCode == 200) {
+          emit(
+            CheckEmailSuccess(
+              //  email: event.email,
+              isLoading: false,
+              message: checkResponse.message,
+              data: checkResponse.data, statusCode: checkResponse.statusCode!,
+            ),
+          );
+        } else {
+          emit(
+            CheckFailed(
+              message: checkResponse.message,
+              isLoading: false,
+              data: checkResponse.data,
+            ),
+          );
         }
       } catch (error) {
         emit(CheckFailed(

@@ -1,70 +1,77 @@
 import 'dart:convert';
 
 class UserModel {
-  String id;
+  String id = "";
   String email;
-  String password;
-  String firstName;
-  String lastName;
-  String profilePhoto;
-  DateTime dateOfBirth;
-  int gender;
-  DateTime joinDate;
+  String? firstName;
+  String? phoneNumber;
+  String? lastName;
+  String? profilePhoto;
+  DateTime? dateOfBirth;
+  int? gender;
+  DateTime? joinDate;
 
   UserModel({
     required this.id,
     required this.email,
-    required this.password,
-    required this.firstName,
-    required this.lastName,
-    required this.profilePhoto,
-    required this.dateOfBirth,
-    required this.gender,
-    required this.joinDate,
+    this.firstName,
+    this.lastName,
+    this.phoneNumber,
+    this.profilePhoto,
+    this.dateOfBirth,
+    this.gender,
+    this.joinDate,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'email': email,
-      'password': password,
       'first_name': firstName,
+      'phone_number': phoneNumber,
       'last_name': lastName,
       'profile_photo': profilePhoto,
-      'date_of_birth': dateOfBirth.toIso8601String(),
+      'date_of_birth': dateOfBirth?.toIso8601String(),
       'gender': gender,
-      'join_date': joinDate.toIso8601String(),
+      'join_date': joinDate?.toIso8601String(),
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      id: map['id'] as String,
-      email: map['email'] as String,
-      password: map['password'] as String,
-      firstName: map['first_name'] as String,
-      lastName: map['last_name'] as String,
-      profilePhoto: map['profile_photo'] as String,
-      dateOfBirth: DateTime.parse(map['date_of_birth']).toUtc(),
-      gender: map['gender'] as int,
-      joinDate: DateTime.parse(map['join_date']).toUtc(),
-    );
+    UserModel user = UserModel(id: "", email: "");
+    for (var value in map["UserAttributes"]) {
+      if (value["Name"] == "sub") {
+        user.id = value["Value"];
+      } else if (value["Name"] == "email") {
+        user.email = value["Value"];
+      } else if (value["Name"] == "given_name") {
+        user.firstName = value["Value"];
+      } else if (value["Name"] == "family_name") {
+        user.lastName = value["Value"];
+      } else if (value["Name"] == "picture") {
+        user.profilePhoto = value["Value"];
+      } else if (value["Name"] == "birthdate") {
+        user.dateOfBirth = DateTime.parse(value["Value"]);
+      } else if (value["Name"] == "phone_number") {
+        user.phoneNumber = value["Value"];
+      }
+    }
+    return user;
   }
   Map<String, dynamic> toJson() => {
         'id': id,
         'email': email,
-        'password': password,
         'first_name': firstName,
         'last_name': lastName,
         'profile_photo': profilePhoto,
-        'date_of_birth': dateOfBirth.toIso8601String(),
+        'date_of_birth': dateOfBirth?.toIso8601String(),
         'gender': gender,
-        'join_date': joinDate.toIso8601String(),
+        'join_date': joinDate?.toIso8601String(),
       };
   //String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(Map<String, dynamic> source) =>
+      UserModel.fromMap(source);
 }
 
 class UserTokensModel {

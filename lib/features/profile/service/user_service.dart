@@ -67,7 +67,7 @@ class UserService extends UserInterface {
         if (response.statusCode == 200) {
           return HttpResponseModel(
             statusCode: response.statusCode,
-            data: response.data["data"],
+            data: response.data,
             message: response.data["message"],
           );
         } else {
@@ -166,7 +166,7 @@ class UserService extends UserInterface {
           'first_name': userModel.firstName,
           'last_name': userModel.lastName,
           'profile_photo': userModel.profilePhoto,
-          'date_of_birth': userModel.dateOfBirth.toUtc().toIso8601String(),
+          'date_of_birth': userModel.dateOfBirth?.toUtc().toIso8601String(),
           'gender': userModel.gender,
         }),
       );
@@ -284,22 +284,21 @@ class UserService extends UserInterface {
           },
         ),
       );
-      try {
-        if (response.statusCode == 200) {
-          return right(UserModel.fromJson(response.data));
-        } else {
-          return left(HttpResponseModel(
-            statusCode: response.statusCode,
-            message: response.data["message"],
-          ));
-        }
-      } catch (e) {
+      if (response.statusCode == 200) {
+        return right(UserModel.fromJson(response.data["data"]));
+      } else {
         return left(HttpResponseModel(
           statusCode: response.statusCode,
-          data: response.data,
           message: response.data["message"],
         ));
       }
+      // try {} catch (e) {
+      //   return left(HttpResponseModel(
+      //     statusCode: response.statusCode,
+      //     data: response.data,
+      //     message: response.data["message"],
+      //   ));
+      // }
     } else {
       return left(HttpResponseModel(
         message: DataSource.noInternetConnection.getFailure().message,

@@ -87,5 +87,9 @@ abstract class  LocaleKeys {
   static const enter_your_email = 'enter_your_email';
   static const enter_your_email_to_confirm = 'enter_your_email_to_confirm';
   static const verify_your_email = 'verify_your_email';
+  static const continu = 'continu';
+  static const we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission = 'we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission';
+  static const signing_up_time = 'signing_up_time';
+  static const tell_us_about_yourself = 'tell_us_about_yourself';
 
 }

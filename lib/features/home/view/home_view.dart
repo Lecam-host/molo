@@ -7,6 +7,7 @@ import '../../../common/components/store_card_widget.dart';
 import '../../../common/components/upcoming_card.dart';
 import '../../../common/helpers/ui_helper.dart';
 import '../../../common/widgets/see_more_button.dart';
+import '../../auth/login/widget/go_kyc_page_button.dart';
 import '../../theme/bloc/theme_bloc.dart';
 import '../../theme/bloc/theme_state.dart';
 import '../components/offers_carousel.dart';
@@ -60,8 +61,12 @@ class _HomeViewState extends State<HomeView> {
                       SizedBox(
                         height: UIHelper.deviceHeight * 0.01,
                       ),
+                      const GoKycPageButton(),
                       SeeMoreButtonWidget(
                         title: LocaleKeys.upcoming.tr(),
+                      ),
+                      SizedBox(
+                        height: UIHelper.deviceHeight * 0.01,
                       ),
                       const UpcomingCard(
                         title: 'Temu.com',

@@ -84,6 +84,10 @@
     "payments": "Paiements",
     "enter_your_email":"Entrez votre email",
     "enter_your_email_to_confirm":"Entrez votre email pour confirmer votre compte",
-      "verify_your_email":"Vérifiez votre email"
+    "verify_your_email":"Vérifiez votre email",
+    "continu":"Continuer",
+    "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission":"Nous stockerons en toute sécurité toutes les informations que vous nous fournissez et ne les partagerons qu'avec votre permission.",
+    "signing_up_time":"Heure d'inscription",
+    "tell_us_about_yourself":"Parlez-nous de vous"
 
 }
