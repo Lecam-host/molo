@@ -8,6 +8,7 @@ import 'core/http/http_helper.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/http/network_info.dart';
+import 'core/storage/app_storage.dart';
 import 'features/auth/data/auth_local_data_source.dart';
 
 final di = GetIt.instance;
@@ -15,10 +16,15 @@ Future<void> configureDependencies() async {
   // ** FEATURES **
   // SHARED PREFERENCES
   const sharedPreferences = FlutterSecureStorage();
+
   di.registerLazySingleton(() => sharedPreferences);
   di.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSourceImpl(sharedPreferences: di()));
   // NETWORK INFO
+
+  di.registerLazySingleton(() => AppStorage(
+        sharedPreferences: di(),
+      ));
   di.registerLazySingleton(() => DataConnectionChecker());
   di.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(di()));
   di.registerLazySingleton<DioClient>(() => DioClient());

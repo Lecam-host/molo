@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:molo/core/constants/color_constants.dart';
+import 'package:molo/core/storage/app_storage.dart';
 
 import '../../common/helpers/size_config.dart';
 import '../../core/utils/router/routes.dart';
 import '../../generated/locale_keys.g.dart';
+import '../../injection_container.dart';
 import '../theme/bloc/theme_bloc.dart';
 import '../theme/bloc/theme_state.dart';
 import 'onboarding_contents.dart';
@@ -20,7 +22,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController _controller;
-
+  AppStorage appStorage = AppStorage(sharedPreferences: di());
   @override
   void initState() {
     _controller = PageController();
@@ -132,6 +134,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               padding: const EdgeInsets.all(30),
                               child: ElevatedButton(
                                 onPressed: () {
+                                  appStorage.saveData(
+                                    AppModel(
+                                      alreadySeeOnboarding: true,
+                                    ),
+                                  );
                                   context.go(Routes.login.path);
                                 },
                                 style: ElevatedButton.styleFrom(

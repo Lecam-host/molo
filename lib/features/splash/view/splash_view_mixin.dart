@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of "splash_view.dart";
 
 mixin SplashViewMixin on State<SplashView> {
@@ -19,7 +21,25 @@ mixin SplashViewMixin on State<SplashView> {
     // TODO: When you create the user authentication service, delete the code block below that directs to the NavigationView page and open the comment lines above.
     // Remove this Future.delayed() function. This was added for testing purposes to direct you to the home page instead of the direct login screen when you first launch the project.
     Future.delayed(Duration.zero, () async {
-      if (context.mounted) context.go(Routes.onBoarding.path);
+      AppStorage appStorage = AppStorage(sharedPreferences: di());
+      AppModel? appModel = await appStorage.loadData();
+      if (context.mounted) {
+        if (appModel != null && appModel.alreadySeeOnboarding) {
+          AuthLocalDataSourceImpl authLocalDataSourceImpl =
+              AuthLocalDataSourceImpl(sharedPreferences: di());
+          await authLocalDataSourceImpl.loadData().then((user) {
+            if (user != null) {
+              _checkValues(user)
+                  ? context.go(Routes.navigation.path)
+                  : context.go(Routes.login.path);
+            } else {
+              context.go(Routes.login.path);
+            }
+          });
+        } else {
+          context.go(Routes.onBoarding.path);
+        }
+      }
     });
 
     return true;

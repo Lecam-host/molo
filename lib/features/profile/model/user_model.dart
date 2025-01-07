@@ -10,6 +10,7 @@ class UserModel {
   DateTime? dateOfBirth;
   int? gender;
   DateTime? joinDate;
+  UserTokensModel? tokens;
 
   UserModel({
     required this.id,
@@ -20,6 +21,7 @@ class UserModel {
     this.profilePhoto,
     this.dateOfBirth,
     this.gender,
+    this.tokens,
     this.joinDate,
   });
 
@@ -28,6 +30,7 @@ class UserModel {
       'id': id,
       'email': email,
       'first_name': firstName,
+      'tokens': tokens?.toMap(),
       'phone_number': phoneNumber,
       'last_name': lastName,
       'profile_photo': profilePhoto,
@@ -62,6 +65,7 @@ class UserModel {
         'id': id,
         'email': email,
         'first_name': firstName,
+        'tokens': tokens?.toMap(),
         'last_name': lastName,
         'profile_photo': profilePhoto,
         'date_of_birth': dateOfBirth?.toIso8601String(),
@@ -72,6 +76,22 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> source) =>
       UserModel.fromMap(source);
+
+  factory UserModel.fromLocal(Map<String, dynamic> map) {
+    return UserModel(
+        id: map['id'] as String,
+        email: map['email'] as String,
+        firstName: map['first_name'],
+        lastName: map['last_name'],
+        phoneNumber: map['phone_number'],
+        profilePhoto: map['profile_photo'],
+        tokens: map['tokens'] != null
+            ? UserTokensModel.fromMap(map['tokens'])
+            : null,
+        dateOfBirth: map['date_of_birth'] != null
+            ? DateTime.parse(map['date_of_birth'])
+            : null);
+  }
 }
 
 class UserTokensModel {

@@ -5,6 +5,9 @@ import 'package:molo/core/models/http_response_model.dart';
 import 'package:molo/features/profile/model/user_model.dart';
 import 'package:molo/features/profile/service/user_service.dart';
 
+import '../../../../injection_container.dart';
+import '../../data/auth_local_data_source.dart';
+
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserService userService;
 
@@ -26,8 +29,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                         isLoading: false,
                         statusCode: l.statusCode));
                   }, (r) {
+                    AuthLocalDataSourceImpl authLocalDataSourceImpl =
+                        AuthLocalDataSourceImpl(sharedPreferences: di());
+
+                    UserModel userModel = r;
+                    userModel.tokens = userTokensModel;
+                    authLocalDataSourceImpl.saveData(userModel);
                     emit(LoginSuccess(
-                        user: r,
+                        user: userModel,
                         //   message: r.message,
                         isLoading: false));
                   }));

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:molo/features/profile/model/user_model.dart';
 
@@ -30,13 +32,14 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     final local = SecureStorageData<UserModel>(
       StorageConstant.AUTH_CACHED,
       sharedPreferences,
-      fromJson: UserModel.fromMap,
+      fromJson: UserModel.fromLocal,
       toJson: (data) => data.toJson(),
     );
 
     try {
       return (await local.loadData())!;
     } catch (e) {
+      inspect(e);
       return null;
     }
   }
