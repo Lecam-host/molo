@@ -104,7 +104,19 @@ class CodegenLoader extends AssetLoader{
   "continu": "Continue",
   "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission": "We'll store any info you give us securely and only share it with your permission.",
   "signing_up_time": "Signing up time",
-  "tell_us_about_yourself": "Tell us about yourself"
+  "tell_us_about_yourself": "Tell us about yourself",
+  "select_country": "Select country",
+  "residence_place": "Residence place",
+  "city": "City",
+  "address": "Address",
+  "country": "Country",
+  "verify_identity": "Verify identity",
+  "position_face_in_oval": "Position face in oval",
+  "front_of_card": "Front of card",
+  "back_card": "Back card",
+  "selfie_verification": "Selfie verification",
+  "take_selfie": "Take selfie",
+  "why_take_selfie": "Why take a selfie?"
 };
 static const Map<String,dynamic> fr = {
   "email": "E-mail",
@@ -196,7 +208,18 @@ static const Map<String,dynamic> fr = {
   "continu": "Continuer",
   "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission": "Nous stockerons en toute sécurité toutes les informations que vous nous fournissez et ne les partagerons qu'avec votre permission.",
   "signing_up_time": "Heure d'inscription",
-  "tell_us_about_yourself": "Parlez-nous de vous"
+  "tell_us_about_yourself": "Parlez-nous de vous",
+  "select_country": "Sélectionnez un pays",
+  "residence_place": "Lieu de résidence",
+  "city": "Ville",
+  "address": "Adresse",
+  "country": "Pays",
+  "verify_identity": "Verify identity",
+  "position_face_in_oval": "Position face in oval",
+  "front_of_card": "Front of card",
+  "back_card": "Back card",
+  "selfie_verification": "Selfie verification",
+  "take_selfie": "Take selfie"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "fr": fr};
 }

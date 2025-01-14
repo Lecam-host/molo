@@ -88,6 +88,18 @@
     "continu":"Continuer",
     "we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission":"Nous stockerons en toute sécurité toutes les informations que vous nous fournissez et ne les partagerons qu'avec votre permission.",
     "signing_up_time":"Heure d'inscription",
-    "tell_us_about_yourself":"Parlez-nous de vous"
+    "tell_us_about_yourself":"Parlez-nous de vous",
+    "select_country": "Sélectionnez un pays",
+    "residence_place": "Lieu de résidence",
+    "city": "Ville",
+    "address": "Adresse",
+    "country": "Pays",
+    "verify_identity":"Verify identity",
+    "position_face_in_oval":"Position face in oval",
+    "front_of_card":"Front of card",
+    "back_card":"Back card",
+    "selfie_verification":"Selfie verification",
+    "take_selfie":"Take selfie"
+
 
 }

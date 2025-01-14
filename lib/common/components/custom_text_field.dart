@@ -55,7 +55,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           placeholder: widget.placeholder,
           textInputAction: widget.textInputAction,
           keyboardType: widget.keyboardType,
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(15),
           style: const TextStyle(
             color: CupertinoDynamicColor.withBrightness(
               color: CupertinoColors.black,

@@ -91,5 +91,17 @@ abstract class  LocaleKeys {
   static const we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission = 'we_ll_store_any_info_you_give_us_securely_and_only_share_it_with_your_permission';
   static const signing_up_time = 'signing_up_time';
   static const tell_us_about_yourself = 'tell_us_about_yourself';
+  static const select_country = 'select_country';
+  static const residence_place = 'residence_place';
+  static const city = 'city';
+  static const address = 'address';
+  static const country = 'country';
+  static const verify_identity = 'verify_identity';
+  static const position_face_in_oval = 'position_face_in_oval';
+  static const front_of_card = 'front_of_card';
+  static const back_card = 'back_card';
+  static const selfie_verification = 'selfie_verification';
+  static const take_selfie = 'take_selfie';
+  static const why_take_selfie = 'why_take_selfie';
 
 }

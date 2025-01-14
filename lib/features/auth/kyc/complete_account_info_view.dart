@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../common/components/camera/camera_card_page.dart';
+import '../../../common/helpers/size_config.dart';
 import '../../../core/constants/color_constants.dart';
 import '../../../core/utils/router/routes.dart';
+import '../../theme/bloc/theme_bloc.dart';
+import '../../theme/bloc/theme_state.dart';
 import '../login/bloc/login_bloc.dart';
 import '../login/bloc/login_state.dart';
+import 'capture_doc_or_selfie/take_selfie_page.dart';
+import 'select_country_and_city.dart';
 import 'tell_us_about_yourself_page.dart';
 part "kyc_mixin.dart";
 
@@ -20,60 +27,121 @@ class _CompleteAccountInfoViewState extends State<CompleteAccountInfoView>
     with KycMixin {
   @override
   void initState() {
-    // TODO: implement initState
+    progress = 1 / listPage.length;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    // double width = SizeConfig.screenW!;
+    // double height = SizeConfig.screenH!;
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          Row(
-            children: [
-              IconButton(
-                  onPressed: () {
-                    context.go(Routes.navigation.path);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                  )),
-              const SizedBox(
-                width: 40,
-              ),
-              Expanded(
-                  child: SizedBox(
-                width: 60,
-                child: LinearProgressIndicator(
-                    minHeight: 5.0,
-                    value: progress,
-                    color: ColorConstants.darkBackgroundColorContainer,
-                    backgroundColor:
-                        ColorConstants.lightBackgroundColorActivated,
-                    borderRadius: BorderRadius.circular(10)),
-              )),
-              const SizedBox(
-                width: 70,
-              )
-            ],
-          ),
-          Expanded(
-            child: PageView(
-              // physics: const NeverScrollableScrollPhysics(),
-              controller: progressController,
-              //physics: NeverScrollableScrollPhysics(),
-              onPageChanged: (int page) {
-                setState(() {
-                  currentPage = page;
-                  progress = (page + 1) / listPage.length;
-                });
-              },
-              children: listPage,
+      body: SafeArea(child:
+          BlocBuilder<ThemeBloc, ThemeState>(builder: (context, themeState) {
+        return Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      context.go(Routes.navigation.path);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                    )),
+                const SizedBox(
+                  width: 40,
+                ),
+                Expanded(
+                    child: SizedBox(
+                  width: 60,
+                  child: LinearProgressIndicator(
+                      minHeight: 5.0,
+                      value: progress,
+                      color: ColorConstants.darkBackgroundColorContainer,
+                      backgroundColor:
+                          ColorConstants.lightBackgroundColorActivated,
+                      borderRadius: BorderRadius.circular(10)),
+                )),
+                const SizedBox(
+                  width: 70,
+                )
+              ],
             ),
-          ),
-        ],
-      )),
+            Expanded(
+              child: PageView(
+                // physics: const NeverScrollableScrollPhysics(),
+                controller: progressController,
+                //physics: NeverScrollableScrollPhysics(),
+                onPageChanged: (int page) {
+                  setState(() {
+                    currentPage = page;
+                    progress = (page + 1) / listPage.length;
+                  });
+                },
+                children: listPage,
+              ),
+            )
+            // Column(
+            //   children: [
+            //     Expanded(
+            //       child: ,
+            //     ),
+            // Padding(
+            //   padding: const EdgeInsets.all(30),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       TextButton(
+            //         onPressed: () {
+            //           // _controller.jumpToPage(2);
+            //         },
+            //         style: TextButton.styleFrom(
+            //           elevation: 0,
+            //           textStyle: TextStyle(
+            //             fontWeight: FontWeight.w600,
+            //             fontSize: (width <= 550) ? 13 : 17,
+            //           ),
+            //         ),
+            //         child: Text(
+            //           LocaleKeys.skip.tr().toUpperCase(),
+            //           style: const TextStyle(color: Colors.black),
+            //         ),
+            //       ),
+            //       ElevatedButton(
+            //         onPressed: () {},
+            //         style: ElevatedButton.styleFrom(
+            //           backgroundColor: themeState.isDark
+            //               ? ColorConstants.darkBackground
+            //               : ColorConstants.lightBackground,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(50),
+            //           ),
+            //           elevation: 0,
+            //           padding: (width <= 550)
+            //               ? const EdgeInsets.symmetric(
+            //                   horizontal: 30, vertical: 20)
+            //               : const EdgeInsets.symmetric(
+            //                   horizontal: 30, vertical: 25),
+            //           textStyle:
+            //               TextStyle(fontSize: (width <= 550) ? 13 : 17),
+            //         ),
+            //         child: Text(LocaleKeys.next.tr().toUpperCase(),
+            //             style: TextStyle(
+            //               color: themeState.isDark
+            //                   ? ColorConstants.lightBackground
+            //                   : ColorConstants.darkBackground,
+            //             )),
+            //       ),
+            //     ],
+            //   ),
+            // )
+            //   ],
+            // ),
+          ],
+        );
+      })),
     );
   }
 }
