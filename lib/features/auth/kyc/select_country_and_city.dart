@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:molo/features/auth/kyc/complete_account_info_view.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 
-import '../../../common/components/custom_text_field.dart';
+import '../../../common/components/inputs/custom_text_field.dart';
 import '../../../common/components/select_country_widget.dart';
 import '../../../common/components/text_widget.dart';
 

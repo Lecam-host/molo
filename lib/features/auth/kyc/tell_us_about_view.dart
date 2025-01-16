@@ -24,7 +24,9 @@ class _TellUsAboutAskPageState extends State<TellUsAboutAskPage> {
           Positioned(
             top: 30,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,

@@ -19,8 +19,6 @@ import 'package:molo/common/helpers/app_helper.dart';
 import 'package:molo/common/helpers/ui_helper.dart';
 import 'package:molo/features/profile/widget/birthday_text_field.dart';
 import 'package:molo/features/profile/widget/gender_text_field.dart';
-import 'package:molo/features/profile/widget/image_dialog.dart';
-import 'package:molo/features/profile/widget/profile_photo_widget.dart';
 import 'package:molo/features/profile/widget/profile_text_field.dart';
 import 'package:molo/common/widgets/custom_scaffold.dart';
 import 'package:molo/common/widgets/unauthenticated_user_widget.dart';

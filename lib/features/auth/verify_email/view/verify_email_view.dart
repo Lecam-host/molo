@@ -12,7 +12,7 @@ import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 
-import '../../../../common/components/custom_text_field.dart';
+import '../../../../common/components/inputs/custom_text_field.dart';
 import '../../../../common/helpers/app_helper.dart';
 import '../../../../common/widgets/button_widget.dart';
 import '../../../../core/models/http_response_model.dart';

@@ -9,7 +9,7 @@ import 'package:molo/features/auth/register/bloc/register_event.dart';
 import 'package:molo/features/auth/register/bloc/register_state.dart';
 import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
-import 'package:molo/common/components/custom_text_field.dart';
+import 'package:molo/common/components/inputs/custom_text_field.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/common/helpers/app_helper.dart';
 import 'package:molo/core/models/http_response_model.dart';

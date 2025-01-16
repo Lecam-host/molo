@@ -4,7 +4,7 @@ import 'package:molo/features/theme/bloc/theme_bloc.dart';
 import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/core/constants/color_constants.dart';
 
-import '../../core/constants/app_constants.dart';
+import '../../../core/constants/app_constants.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -16,6 +16,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? prefixIcon;
   final bool obscureText;
   final void Function(String)? onSubmitted;
+  final Function()? onTap;
   const CustomTextField({
     super.key,
     required this.textEditingController,
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.textInputAction = TextInputAction.next,
     this.prefixIcon,
+    this.onTap,
     this.obscureText = false,
     this.onSubmitted,
   });
@@ -46,6 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, themeState) {
         return CupertinoTextField(
+          onTap: widget.onTap,
           controller: widget.textEditingController,
           onSubmitted: (value) {
             widget.onSubmitted != null ? widget.onSubmitted!(value) : null;

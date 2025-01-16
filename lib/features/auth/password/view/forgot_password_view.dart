@@ -10,7 +10,7 @@ import 'package:molo/features/theme/bloc/theme_state.dart';
 import 'package:molo/generated/locale_keys.g.dart';
 import 'package:molo/common/helpers/app_helper.dart';
 import 'package:molo/core/models/http_response_model.dart';
-import 'package:molo/common/components/custom_text_field.dart';
+import 'package:molo/common/components/inputs/custom_text_field.dart';
 part "forgot_password_view_mixin.dart";
 
 class ForgotPasswordView extends StatelessWidget with ForgotPasswordViewMixin {
